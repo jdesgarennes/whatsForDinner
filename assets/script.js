@@ -13,7 +13,7 @@ var searchIngredient= document.querySelector('#searchIngredient');
 // function to get ingredients
 function getIngredient() {
 
-    var requestUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ ingredientInput.value;
+    var requestUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/classify?locale=en_us'+ ingredientInput.value;
 
   
     fetch(requestUrl)
