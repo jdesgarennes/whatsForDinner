@@ -1,0 +1,79 @@
+.heroImage{
+    background: linear-gradient(rgb(65,65,65,0.5),rgb(58,57,57,0.712)), url("https://i.pinimg.com/originals/af/46/fa/af46fa8a4e84201bb3a5d6dcd73d928c.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+    height: 30rem;
+}
+.heroContents{
+    padding-top: 25px;
+    text-align: center;
+    color: white
+}
+.imageHeader{
+    font-family: 'Courgette', cursive;
+    font-size:4em;
+    color:  #e9ab82;
+    margin-top: 8rem;
+    margin-left: 4rem;
+}
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 4rem;
+}
+.bookButton {
+    
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: smaller;
+    background-image: linear-gradient(to bottom left , #e9ab82 31%, #f3d880 100%);
+    font-weight: bold;
+    
+  }
+   .card{
+     height:20rem;
+     width: 90%; 
+     /* Centers along the main axis determined by flex-direction */
+  justify-content: center;
+  /* Centers along the opposite axis */
+  align-items: center;
+  
+  margin: 0 auto;
+  border-style: solid;
+  border-width: 2px;
+  background-color: #bacec1;
+ 
+
+}
+.cardHeader1{
+    text-align: center;
+    font-size: 35px; 
+}
+.cardHeader{
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Courgette', cursive;
+    
+}
+.cardContainer{
+    height:30rem;
+    display: grid;
+    border: solid 1px red;
+    grid-template-columns: repeat(3, 3fr);
+    grid-auto-rows: auto;
+    background-color: #F6F4E8;
+
+}
+.cardText{
+    text-align: center;
+    padding-left:1rem;
+    padding-right: 1rem;
+    color:#1d3124;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
