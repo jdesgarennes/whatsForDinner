@@ -17,7 +17,7 @@ function getIngredient() {
 
     var requestUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/classify?locale=en_us'+ ingredientInput.value;
 
-    fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=5&ignorePantry=true&ranking=1", {
+    fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" + ingredientInput.value + "&number=5&ignorePantry=true&ranking=1", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -25,24 +25,15 @@ function getIngredient() {
 	}
 })  
 .then(response => {
-	console.log(response);
+   return response.json();
+})
+.then (data =>{
+    console.log(data)
 })
 .catch(err => {
 	console.error(err);
 });
   
-    // fetch(requestUrl)
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
-//       .then(function (data) {
-//         for (var i = 0; i < data.length; i++) {
-//           var listItem = document.createElement('li');
-//           listItem.textContent = data[i];
-//           ingredientsList.appendChild(listItem);
-//         }
-//         console.log(response)
-//       });
-//   }
+    
 }
   fetchButton.addEventListener('click', getIngredient);
