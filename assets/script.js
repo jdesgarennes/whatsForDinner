@@ -3,8 +3,10 @@
 var ingredientInput = document.querySelector(".ingredientInput")
 var ingredientsList = document.querySelector(".ingredientsList")
 var searchIngredient= document.querySelector('#searchIngredient');
-var fetchButton = document.getElementById("searchIngredient");
-
+var submitButton = document.getElementById("submitIngredient");
+var listContainer = document.querySelector(".itemListContainer")
+var searchRecipeButt = document.querySelector(".searchRecipes")
+var itemList =[]
 
 
 
@@ -33,7 +35,41 @@ function getIngredient() {
 .catch(err => {
 	console.error(err);
 });
-  
-    
 }
-  fetchButton.addEventListener('click', getIngredient);
+
+function recipeList(){
+    listContainer.innerHTML = "";
+    for (var i = 0; i < itemList.length; i++) {
+        var itemLists = itemList[i];
+        var li = document.createElement("li");
+        li.textContent = itemLists;
+        listContainer.appendChild(li);
+    }
+}
+
+getIngredient()
+
+// takes the ingredient list value and pushes it to the item list array so that its usable outsided of the function too
+function ingredientPush(array){
+    var ingredientText = ingredientInput.value;
+    ingredientText.innerHTML ="";
+    array.push(ingredientText);
+    console.log(itemList);
+}
+
+
+
+  submitButton.addEventListener('click', function(event){
+    event.preventDefault();
+    ingredientPush(itemList);
+    recipeList();
+  });
+  console.log(itemList);
+
+   searchRecipeButt.addEventListener('click', function(){
+      
+   })
+
+
+
+
