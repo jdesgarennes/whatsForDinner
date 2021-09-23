@@ -92,6 +92,7 @@ function ingredientPush(array){
     event.preventDefault();
     ingredientPush(itemList);
     recipeList();
+    ingredientInput.value = ""
   });
  
 
