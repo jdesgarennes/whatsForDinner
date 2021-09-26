@@ -1,5 +1,4 @@
 
-
 var ingredientInput = document.querySelector(".ingredientInput")
 var ingredientsList = document.querySelector(".ingredientsList")
 var searchIngredient= document.querySelector('#searchIngredient');
@@ -8,6 +7,8 @@ var listContainer = document.querySelector(".itemListContainer")
 var searchRecipeButt = document.querySelector("#searchRecipes")
 var recipeCardContainer = document.querySelector(".recipeCardContainer")
 var recipeIDData = document.querySelector("recipeUniqeID")
+var someClickdata = ''
+//var newdatat = document.getAttribute('data-recipeID');
 var testData =''
 var itemListString=""
 var itemList =[]
@@ -144,17 +145,10 @@ searchRecipeButt.addEventListener('click', function(){
 
    document.addEventListener('click', function(e){
     if(e.target && e.target.id== 'recipeUniqeID'){
-      console.log(testData);
+      //newdatat = document.getAttribute('data-recipeID');
+       newdatat = e.target.getAttribute('data-recipeID');
+      console.log(newdatat);
 
       console.log();
     }
   });
-
-
-   
-
-// needed data points for first card.
-
-// data[].image:
-// data[].title:
-// data[].likes:
