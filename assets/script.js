@@ -15,7 +15,6 @@ var recipetitle = ""
 var recipeImg = ""
 
 
-
 // function to get ingredients
 function getIngredient() {
 
@@ -43,9 +42,7 @@ function getIngredient() {
 
 function createRecipeCards(data){
     console.log(data)
-    // foreach is pulling elements from Api on to page
-   //var recipeData = data
-
+    
    for (i=0; i<5; i++){
 
     var  recipeHtml = document.getElementById('recipe'+i);
@@ -70,35 +67,10 @@ function createRecipeCards(data){
 
 
 
-        //  $('<img>').attr( {src:`https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`,class:'uk-card-media-top'   } ).appendTo('#recipe'+i).text(data[i].title);
-          // 'class','uk-card-media-top'
-        //  $('<h3>').attr( 'class','uk-card-title recipeTitle'+i ).appendTo('#recipe'+i).text(data[i].title);
-         // $('<h4>').attr( 'class','uk-card-title recipeLikes'+i ).appendTo('.recipeTitle'+i).text('Likes: '+ data[i].likes);
-
 
         };
        
-    //recipeData.forEach((info) => {
-    // console.log(info)
-    // var recipe card below is creating a div element for our card
-    //var recipeCard = document.createElement("div")
-    //var titleH1 = document.createElement("h3")
-    //titleH1.innerText = info.title
-    //recipeCard.append(titleH1)
-    //console.log(recipetitle)
-
-    // begin for loop to create recipe cards
     
-
-
-
-   // recipeImageUrl = `https://spoonacular.com/recipeImages/${info.id}-312.231.jpg`
-    //var recipeImg = document.createElement("img")
-    //recipeImg.src = recipeImageUrl
-    //recipeCard.append(recipeImg)
-
-    //recipeCardContainer.append(recipeCard)
- // });
 }
 // Makes list of ingredients
 function recipeList(){
@@ -183,11 +155,3 @@ searchRecipeButt.addEventListener('click', function(){
     }
   });
 
-
-   
-
-// needed data points for first card.
-
-// data[].image:
-// data[].title:
-// data[].likes:
