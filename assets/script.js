@@ -7,6 +7,7 @@ var submitButton = document.getElementById("submitIngredient");
 var listContainer = document.querySelector(".itemListContainer")
 var searchRecipeButt = document.querySelector("#searchRecipes")
 var recipeCardContainer = document.querySelector(".recipeCardContainer")
+var recipeIDData = document.querySelector("recipeUniqeID")
 var itemListString=""
 var itemList =[]
 var recipetitle = ""
@@ -50,11 +51,33 @@ function createRecipeCards(data){
    //var recipeData = data
 
    for (i=0; i<5; i++){
+
+    var  recipeHtml = document.getElementById('recipe'+i);
+
+    var recipeImage =document.createElement('img');
+    recipeImage.setAttribute("src", `https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`);
+    recipeImage.setAttribute('id', "recipeUniqeID");
+    recipeImage.setAttribute("data-recipeID", data[i].id);
+    var testData = recipeImage.getAttribute('data-recipeID');
+    console.log(testData);
+    recipeHtml.appendChild(recipeImage);
+
+    var recipeTitleCard = document.createElement('h3');
+    recipeTitleCard.setAttribute('class','uk-card-title recipeTitle');
+    recipeTitleCard.textContent=data[i].title;
+    recipeHtml.appendChild(recipeTitleCard);  
     
-          $('<img>').attr( {src:`https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`,class:'uk-card-media-top'   } ).appendTo('#recipe'+i).text(data[i].title);
+    var recipeLikes = document.createElement('p');
+    recipeLikes.textContent='LIKES: '+data[i].likes;
+    recipeHtml.appendChild(recipeLikes);  
+
+
+
+
+        //  $('<img>').attr( {src:`https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`,class:'uk-card-media-top'   } ).appendTo('#recipe'+i).text(data[i].title);
           // 'class','uk-card-media-top'
-          $('<h3>').attr( 'class','uk-card-title recipeTitle'+i ).appendTo('#recipe'+i).text(data[i].title);
-          $('<h4>').attr( 'class','uk-card-title recipeLikes'+i ).appendTo('.recipeTitle'+i).text('Likes: '+ data[i].likes);
+        //  $('<h3>').attr( 'class','uk-card-title recipeTitle'+i ).appendTo('#recipe'+i).text(data[i].title);
+         // $('<h4>').attr( 'class','uk-card-title recipeLikes'+i ).appendTo('.recipeTitle'+i).text('Likes: '+ data[i].likes);
 
 
         };
@@ -118,8 +141,14 @@ searchRecipeButt.addEventListener('click', function(){
     console.log(itemListString)
    })
 
+   document.addEventListener('click', function(e){
+    if(e.target && e.target.id== 'recipeUniqeID'){
+      console.log("HI IT WORKED!");
+    }
+  });
 
 
+   
 
 // needed data points for first card.
 
