@@ -8,6 +8,7 @@ var listContainer = document.querySelector(".itemListContainer")
 var searchRecipeButt = document.querySelector("#searchRecipes")
 var recipeCardContainer = document.querySelector(".recipeCardContainer")
 var recipeIDData = document.querySelector("recipeUniqeID")
+var testData =''
 var itemListString=""
 var itemList =[]
 var recipetitle = ""
@@ -58,7 +59,7 @@ function createRecipeCards(data){
     recipeImage.setAttribute("src", `https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`);
     recipeImage.setAttribute('id', "recipeUniqeID");
     recipeImage.setAttribute("data-recipeID", data[i].id);
-    var testData = recipeImage.getAttribute('data-recipeID');
+    testData = recipeImage.getAttribute('data-recipeID');
     console.log(testData);
     recipeHtml.appendChild(recipeImage);
 
@@ -143,7 +144,9 @@ searchRecipeButt.addEventListener('click', function(){
 
    document.addEventListener('click', function(e){
     if(e.target && e.target.id== 'recipeUniqeID'){
-      console.log("HI IT WORKED!");
+      console.log(testData);
+
+      console.log();
     }
   });
 
