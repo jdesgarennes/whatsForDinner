@@ -1,6 +1,5 @@
 
 var ingredientInput = document.querySelector(".ingredientInput");
-var ingredientsList = document.querySelector(".ingredientsList");
 var searchIngredient= document.querySelector('#searchIngredient');
 var submitButton = document.getElementById("submitIngredient");
 var listContainer = document.querySelector(".itemListContainer");
@@ -9,6 +8,7 @@ var recipeCardContainer = document.querySelector(".recipeCardContainer");
 var recipeIDData = document.querySelector("#recipeUniqeID");
 var htmlJokeLine = document.querySelector("#norrisJokes");
 var historySave =  JSON.parse(localStorage.getItem("Ingredient-history"))
+var lastSearch = document.querySelector("#lastSearch")
 var testData =''
 var itemListString=""
 var itemList =[]
@@ -17,10 +17,10 @@ var recipeImg = ""
 
 
 // function to get ingredients
-function getIngredient() {
+function getIngredient(food) {
 
     console.log(itemListString)
-    fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" + itemListString + "&number=5&ignorePantry=true&ranking=1", {
+    fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" + food + "&number=5&ignorePantry=true&ranking=1", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -90,7 +90,6 @@ function ingredientPush(array){
 function getHistory(){
 if(localStorage.getItem("Ingredient-history") !== null){
 
-  // var historySave =  JSON.parse(localStorage.getItem("Ingredient-history"))
   for (let i = 0; i < historySave.length; i++) {
   
     var li = document.createElement('li');
@@ -152,10 +151,15 @@ function recipeUrl(ID) {
 
 searchRecipeButt.addEventListener('click', function(){
   itemListString = itemList.toString().replaceAll(",", "%2C");
-  getIngredient()
+  getIngredient(itemListString)
   searchRecipeButt.disabled = true;
 
     console.log(itemListString)
+   })
+
+   lastSearch.addEventListener("click", function(){
+    getIngredient(historySave)
+     console.log(historySave)
    })
 
    document.addEventListener('click', function(e){
