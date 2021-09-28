@@ -8,6 +8,7 @@ var searchRecipeButt = document.querySelector("#searchRecipes");
 var recipeCardContainer = document.querySelector(".recipeCardContainer");
 var recipeIDData = document.querySelector("#recipeUniqeID");
 var htmlJokeLine = document.querySelector("#norrisJokes");
+var historySave =  JSON.parse(localStorage.getItem("Ingredient-history"))
 var testData =''
 var itemListString=""
 var itemList =[]
@@ -78,11 +79,27 @@ function recipeList(){
 
 // takes the ingredient list value and pushes it to the item list array so that its usable outsided of the function too
 function ingredientPush(array){
-    var ingredientText = ingredientInput.value;
-    ingredientText.innerHTML ="";
-    array.push(ingredientText);
-    console.log(itemList);
+  var ingredientText = ingredientInput.value;
+  array.push(ingredientText);
+  ingredientText.innerHTML ="";
+  localStorage.setItem("Ingredient-history", JSON.stringify(array))
+  console.log(itemList);
 }
+
+// displays local storage
+function getHistory(){
+if(localStorage.getItem("Ingredient-history") !== null){
+
+  // var historySave =  JSON.parse(localStorage.getItem("Ingredient-history"))
+  for (let i = 0; i < historySave.length; i++) {
+  
+    var li = document.createElement('li');
+    li.textContent = historySave[i] ;
+    listContainer.appendChild(li);
+    
+}console.log(historySave)
+} }
+getHistory()
 
 function chuckNorrisJokes() {
   fetch('https://api.chucknorris.io/jokes/random?category=food')
