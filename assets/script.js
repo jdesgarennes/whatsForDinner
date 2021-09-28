@@ -63,15 +63,9 @@ function createRecipeCards(data){
     var recipeLikes = document.createElement('p');
     recipeLikes.textContent='LIKES: '+data[i].likes;
     recipeHtml.appendChild(recipeLikes);  
+}}
 
 
-
-
-
-        };
-       
-    
-}
 // Makes list of ingredients
 function recipeList(){
     listContainer.innerHTML = "";
@@ -80,8 +74,7 @@ function recipeList(){
         var li = document.createElement("li");
         li.textContent = itemLists;
         listContainer.appendChild(li);
-    }}
-
+}}
 
 // takes the ingredient list value and pushes it to the item list array so that its usable outsided of the function too
 function ingredientPush(array){
@@ -92,7 +85,7 @@ function ingredientPush(array){
 }
 
 function chuckNorrisJokes() {
-  fetch('https://api.chucknorris.io/jokes/random')
+  fetch('https://api.chucknorris.io/jokes/random?category=food')
   .then(function (response) {
     console.log(response.status);
     if (response.status !== 200) {
@@ -153,5 +146,4 @@ searchRecipeButt.addEventListener('click', function(){
       var recipeID = e.target.getAttribute('data-recipeID');
       recipeUrl(recipeID);
     }
-  });
-
+});
