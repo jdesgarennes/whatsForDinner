@@ -1,2 +1,2 @@
-# whatsForDinner
-Our group project
+### Whats For Dinner?
+
