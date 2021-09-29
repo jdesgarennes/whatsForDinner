@@ -9,7 +9,10 @@ var recipeIDData = document.querySelector("#recipeUniqeID");
 var htmlJokeLine = document.querySelector("#norrisJokes");
 var historySave =  JSON.parse(localStorage.getItem("Ingredient-history"))
 var lastSearch = document.querySelector("#lastSearch")
+var weightWatcherPoints = "";
+var cookTime = "";
 var testData =''
+var cardNumber = 0;
 var itemListString=""
 var itemList =[]
 var recipetitle = ""
@@ -19,7 +22,6 @@ var recipeImg = ""
 // function to get ingredients
 function getIngredient(food) {
 
-    console.log(itemListString)
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" + food + "&number=5&ignorePantry=true&ranking=1", {
 	"method": "GET",
 	"headers": {
@@ -42,18 +44,16 @@ function getIngredient(food) {
 }
 
 function createRecipeCards(data){
-    console.log(data)
     
-   for (i=0; i<5; i++){
+  for (i=0; i<5; i++){
 
-    var  recipeHtml = document.getElementById('recipe'+i);
+    var  recipeHtml = document.getElementById('recipe'+i);i
 
     var recipeImage =document.createElement('img');
     recipeImage.setAttribute("src", `https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`);
     recipeImage.setAttribute('id', "recipeUniqeID");
     recipeImage.setAttribute("data-recipeID", data[i].id);
     testData = recipeImage.getAttribute('data-recipeID');
-    console.log(testData);
     recipeHtml.appendChild(recipeImage);
 
     var recipeTitleCard = document.createElement('h3');
@@ -64,7 +64,50 @@ function createRecipeCards(data){
     var recipeLikes = document.createElement('p');
     recipeLikes.textContent='LIKES: '+data[i].likes;
     recipeHtml.appendChild(recipeLikes);  
-}}
+
+    var dataIDNumbers = data[i].id
+    getFoodScore(dataIDNumbers);
+  }
+}
+
+function getFoodScore(id) {
+  fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk?ids=" + id, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      "x-rapidapi-key": "9e46aff44dmshfaaaf6ad37243c9p1b4948jsn65e37fc6e624"
+    }
+  })
+
+  .then(response => {
+    return response.json();
+ }) 
+ .then (data =>{
+  console.log(data);
+  appendTimeScore(data);
+})
+  .catch(err => {
+    console.error(err);
+  });
+
+}
+
+function appendTimeScore(data) {
+  weightWatcherPoints = data[0].weightWatcherSmartPoints;
+  cookTime = data[0].readyInMinutes;
+
+  var  recipeHtml = document.getElementById('recipe'+ cardNumber);
+
+  var weightWatcherScore = document.createElement('p');
+  weightWatcherScore.textContent= 'Weight Watcher Score:' + JSON.stringify(weightWatcherPoints);
+  recipeHtml.appendChild(weightWatcherScore);
+  
+  var cookingTime = document.createElement('p');
+  cookingTime.textContent= 'Cooking Time:' + JSON.stringify(cookTime);
+  recipeHtml.appendChild(cookingTime);
+
+  cardNumber++;
+}
 
 
 // Makes list of ingredients
