@@ -50,8 +50,8 @@ p{
     justify-content: center;
     /* Centers along the opposite axis */
     align-items: center;
-  
-    margin: 0 auto;
+    
+    margin: 50px ;
     border-style: solid;
     border-width: 2px;
     background-color: var(--cardColor);
@@ -71,7 +71,7 @@ p{
 .cardContainer{
     height:30rem;
     display: grid;
-    border: solid 1px red;
+    border: solid 1px black;
     grid-template-columns: repeat(3, 3fr);
     grid-auto-rows: auto;
     background-color:var(--lightBackground);
