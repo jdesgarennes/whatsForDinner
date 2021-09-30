@@ -116,6 +116,7 @@ function recipeList(){
         var itemLists = itemList[i];
         var li = document.createElement("li");
         li.textContent = itemLists;
+        li.style.fontSize= "160%"
         listContainer.appendChild(li);
 }}
 
@@ -136,6 +137,7 @@ if(localStorage.getItem("Ingredient-history") !== null){
   
     var li = document.createElement('li');
     li.textContent = historySave[i] ;
+    li.style.fontSize= "160%";
     listContainer.appendChild(li);
     
 }console.log(historySave)
@@ -154,7 +156,8 @@ function chuckNorrisJokes() {
   })
   .then(function (data) {
     console.log(data);
-      htmlJokeLine.innerHTML = data.value;
+       htmlJokeLine.innerHTML =  data.value ;
+      
   });
 }
 
