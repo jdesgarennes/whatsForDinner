@@ -1,0 +1,64 @@
+:root{
+    --font-border-color:#1d3124;
+    --lightBackground:#F6F4E8;
+    --cardColor:#bacec1;
+}
+.heading{
+    text-align: center;
+    font-family: 'Courgette', cursive;
+    color:var(--font-border-color);
+    font-size:3em;
+    
+}
+/* to make underline heading disappear */
+a:visited{
+    text-decoration: none;
+    color: var(--lightBackground);
+}
+
+a:hover{
+    color: var(--cardColor);
+}
+header{
+    display: flex;
+    justify-content: flex-end;
+    margin: 3rem;
+}
+.jokeContainer{
+    margin-top: 1rem;
+    width: 50%;
+    display: flex;
+    justify-content:flex-end;
+    
+}
+#nav{
+    background-image: linear-gradient(to bottom left , #e9ab82 31%, #f3d880 100%);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin-right: 15px;
+}
+body{
+    background-color: var(--lightBackground);
+}
+input{
+    border-color: var(--font-border-color);
+   margin-right: 5px;
+    border-radius: 5px;
+    padding: 2px;
+    color: var(--font-border-color);
+    background-color: var(--lightBackground);
+}
+.Button{
+    background-image: linear-gradient(to bottom left , #e9ab82 31%, #f3d880 100%);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: white;
+    margin-right: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+.userContainer{
+    margin:3rem;
+}
