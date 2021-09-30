@@ -12,7 +12,6 @@ var lastSearch = document.querySelector("#lastSearch")
 var weightWatcherPoints = "";
 var cookTime = "";
 var testData =''
-var cardNumber = 0;
 var itemListString=""
 var itemList =[]
 var recipetitle = ""
@@ -43,11 +42,12 @@ function getIngredient(food) {
 });
 }
 
+// Creates Recipe Cards with information on each cards and adds an image to each card
 function createRecipeCards(data){
     
-  for (i=0; i<5; i++){
+  for (var i=0; i<5; i++){
 
-    var  recipeHtml = document.getElementById('recipe'+i);i
+    var  recipeHtml = document.getElementById('recipe'+i);
 
     var recipeImage =document.createElement('img');
     recipeImage.setAttribute("src", `https://spoonacular.com/recipeImages/${data[i].id}-312x231.jpg`);
@@ -62,15 +62,16 @@ function createRecipeCards(data){
     recipeHtml.appendChild(recipeTitleCard);  
     
     var recipeLikes = document.createElement('p');
-    recipeLikes.textContent='LIKES: '+data[i].likes;
+    recipeLikes.textContent='Likes: '+data[i].likes;
     recipeHtml.appendChild(recipeLikes);  
 
     var dataIDNumbers = data[i].id
-    getFoodScore(dataIDNumbers);
+    getFoodScore(dataIDNumbers, i);
   }
 }
 
-function getFoodScore(id) {
+// Fetches additional informtion to be used in the card
+function getFoodScore(id, cardNumber) {
   fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk?ids=" + id, {
     "method": "GET",
     "headers": {
@@ -84,7 +85,7 @@ function getFoodScore(id) {
  }) 
  .then (data =>{
   console.log(data);
-  appendTimeScore(data);
+  appendTimeScore(data, cardNumber);
 })
   .catch(err => {
     console.error(err);
@@ -92,21 +93,20 @@ function getFoodScore(id) {
 
 }
 
-function appendTimeScore(data) {
+// Appends the additional information to the card
+function appendTimeScore(data, cardNumber) {
   weightWatcherPoints = data[0].weightWatcherSmartPoints;
   cookTime = data[0].readyInMinutes;
 
   var  recipeHtml = document.getElementById('recipe'+ cardNumber);
 
   var weightWatcherScore = document.createElement('p');
-  weightWatcherScore.textContent= 'Weight Watcher Score:' + JSON.stringify(weightWatcherPoints);
+  weightWatcherScore.textContent= 'Weight Watcher Score: ' + JSON.stringify(weightWatcherPoints);
   recipeHtml.appendChild(weightWatcherScore);
   
   var cookingTime = document.createElement('p');
-  cookingTime.textContent= 'Cooking Time:' + JSON.stringify(cookTime);
+  cookingTime.textContent= 'Cooking Time: ' + JSON.stringify(cookTime) + " minutes";
   recipeHtml.appendChild(cookingTime);
-
-  cardNumber++;
 }
 
 
@@ -120,7 +120,7 @@ function recipeList(){
         listContainer.appendChild(li);
 }}
 
-// takes the ingredient list value and pushes it to the item list array so that its usable outsided of the function too
+// Takes the ingredient list value and pushes it to the item list array so that its usable outsided of the function too
 function ingredientPush(array){
   var ingredientText = ingredientInput.value;
   array.push(ingredientText);
@@ -140,9 +140,9 @@ if(localStorage.getItem("Ingredient-history") !== null){
     listContainer.appendChild(li);
     
 }console.log(historySave)
-} }
-getHistory()
+}}
 
+// Fetches a Chuck Norris food joke and displays it
 function chuckNorrisJokes() {
   fetch('https://api.chucknorris.io/jokes/random?category=food')
   .then(function (response) {
@@ -159,6 +159,7 @@ function chuckNorrisJokes() {
   });
 }
 
+// Gets the URL for the recipe and then redirects to the recipe's webpage
 function recipeUrl(ID) {
   fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + ID + "/information", {
     "method": "GET",
@@ -182,16 +183,19 @@ function recipeUrl(ID) {
 });
 }
 
-  chuckNorrisJokes();
+// Starts up the funtions upon launch of the site
+getHistory()
+chuckNorrisJokes();
 
-  submitButton.addEventListener('click', function(event){
+// Adds an event listener to the submit button to add the item to the list of ingredients  
+submitButton.addEventListener('click', function(event){
     event.preventDefault();
     ingredientPush(itemList);
     recipeList();
     ingredientInput.value = ""
-  });
+});
  
-
+// Adds an event listener for the submit button that will start up the process of searching and displaying food recipes
 searchRecipeButt.addEventListener('click', function(){
   itemListString = itemList.toString().replaceAll(",", "%2C");
   getIngredient(itemListString)
