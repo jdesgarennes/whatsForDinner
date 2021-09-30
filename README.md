@@ -23,4 +23,5 @@ We ran into a few challenges, the first was working with the css framework and o
 ## Future Features: 
 While we like our Current MVP, we would also like to add some future improvements. Outside of some aesthetic UI enhancements, One such improvement would be to add categories to searches. Perhaps only of a certain type of cuisine. Other features could also be related to sorting results by certain health metrics like calories, or restrict food allergies results.
 
-
+Link to project: https://jdesgarennes.github.io/whatsForDinner/
+link to repo: https://github.com/jdesgarennes/whatsForDinner
