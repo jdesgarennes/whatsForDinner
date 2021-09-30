@@ -103,7 +103,7 @@ function appendTimeScore(data) {
   recipeHtml.appendChild(weightWatcherScore);
   
   var cookingTime = document.createElement('p');
-  cookingTime.textContent= 'Cooking Time:' + JSON.stringify(cookTime);
+  cookingTime.textContent= 'Cooking Time: ' + JSON.stringify(cookTime) + " minutes";
   recipeHtml.appendChild(cookingTime);
 
   cardNumber++;
