@@ -1,2 +1,0 @@
-# whatsForDinner
-Our group project
