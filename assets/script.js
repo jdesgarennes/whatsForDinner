@@ -66,7 +66,7 @@ function createRecipeCards(data){
     recipeHtml.appendChild(recipeLikes);  
 
     var dataIDNumbers = data[i].id
-    getFoodScore(dataIDNumbers, i);
+    getFoodScore(dataIDNumbers, recipeHtml);
   }
 }
 
@@ -94,19 +94,18 @@ function getFoodScore(id, cardNumber) {
 }
 
 // Appends the additional information to the card
-function appendTimeScore(data, cardNumber) {
+function appendTimeScore(data, recipeCard) {
   weightWatcherPoints = data[0].weightWatcherSmartPoints;
   cookTime = data[0].readyInMinutes;
 
-  var  recipeHtml = document.getElementById('recipe'+ cardNumber);
 
   var weightWatcherScore = document.createElement('p');
   weightWatcherScore.textContent= 'Weight Watcher Score: ' + JSON.stringify(weightWatcherPoints);
-  recipeHtml.appendChild(weightWatcherScore);
+  recipeCard.appendChild(weightWatcherScore);
   
   var cookingTime = document.createElement('p');
   cookingTime.textContent= 'Cooking Time: ' + JSON.stringify(cookTime) + " minutes";
-  recipeHtml.appendChild(cookingTime);
+  recipeCard.appendChild(cookingTime);
 }
 
 
